@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PULSE — Geopolitical Sentiment Monitor</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<div class="overlay" id="overlay">
+  <div class="overlay-spinner"></div>
+  <div class="overlay-step" id="overlayStep">INIZIALIZZAZIONE...</div>
+</div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-icon"></div>
+    <div>
+      <div class="brand-name">PULSE</div>
+      <div class="brand-sub">GEOPOLITICAL SENTIMENT MONITOR</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="live-pill">
+      <div class="live-dot"></div>
+      LIVE
+    </div>
+    <div class="clock" id="clock">--:--:-- UTC</div>
+  </div>
+</header>
+
+<div class="error-bar" id="errorBar"></div>
+
+<div class="controls">
+  <span class="ctrl-label">MONITOR</span>
+  <div class="chips">
+    <div class="chip active"  data-c="Russia">🇷🇺 Russia</div>
+    <div class="chip active"  data-c="Iran">🇮🇷 Iran</div>
+    <div class="chip active"  data-c="Iraq">🇮🇶 Iraq</div>
+    <div class="chip active"  data-c="Siria">🇸🇾 Siria</div>
+    <div class="chip active"  data-c="Turchia">🇹🇷 Turchia</div>
+    <div class="chip"         data-c="Cina">🇨🇳 Cina</div>
+    <div class="chip"         data-c="Israele">🇮🇱 Israele</div>
+    <div class="chip"         data-c="Arabia Saudita">🇸🇦 Arabia Saudita</div>
+    <div class="chip"         data-c="USA">🇺🇸 USA</div>
+    <div class="chip"         data-c="Corea del Nord">🇰🇵 Corea Nord</div>
+  </div>
+  <button class="run-btn" id="runBtn">▶ ANALIZZA</button>
+</div>
+
+<div class="layout">
+
+  <main class="main">
+
+    <div class="sec-label">// indice di tensione — sessione corrente</div>
+    <div class="cards-grid" id="indexGrid">
+      <div class="icard"><span class="icard-flag">🇷🇺</span><div class="icard-name">Russia</div><div class="icard-score" style="color:#4a6070;">—</div><div class="icard-label">in attesa</div></div>
+      <div class="icard"><span class="icard-flag">🇮🇷</span><div class="icard-name">Iran</div><div class="icard-score" style="color:#4a6070;">—</div><div class="icard-label">in attesa</div></div>
+      <div class="icard"><span class="icard-flag">🇮🇶</span><div class="icard-name">Iraq</div><div class="icard-score" style="color:#4a6070;">—</div><div class="icard-label">in attesa</div></div>
+      <div class="icard"><span class="icard-flag">🇸🇾</span><div class="icard-name">Siria</div><div class="icard-score" style="color:#4a6070;">—</div><div class="icard-label">in attesa</div></div>
+      <div class="icard"><span class="icard-flag">🇹🇷</span><div class="icard-name">Turchia</div><div class="icard-score" style="color:#4a6070;">—</div><div class="icard-label">in attesa</div></div>
+    </div>
+
+    <div class="sec-label">// trend 7 giorni</div>
+    <div class="spark-section" id="sparklines">
+      <div class="spark-row"><div class="spark-name">Russia</div><div class="spark-track"><div class="spark-fill" style="background:#e63946;width:0%"></div></div><div class="spark-val" style="color:#4a6070;">—</div></div>
+      <div class="spark-row"><div class="spark-name">Iran</div><div class="spark-track"><div class="spark-fill" style="background:#f4a261;width:0%"></div></div><div class="spark-val" style="color:#4a6070;">—</div></div>
+      <div class="spark-row"><div class="spark-name">Iraq</div><div class="spark-track"><div class="spark-fill" style="background:#9b2226;width:0%"></div></div><div class="spark-val" style="color:#4a6070;">—</div></div>
+      <div class="spark-row"><div class="spark-name">Siria</div><div class="spark-track"><div class="spark-fill" style="background:#00b4d8;width:0%"></div></div><div class="spark-val" style="color:#4a6070;">—</div></div>
+      <div class="spark-row"><div class="spark-name">Turchia</div><div class="spark-track"><div class="spark-fill" style="background:#2ec4b6;width:0%"></div></div><div class="spark-val" style="color:#4a6070;">—</div></div>
+    </div>
+
+    <div class="sec-label">// segnali — contesto implicito rilevato</div>
+    <div id="signals">
+      <div class="empty-state">// avviare l'analisi per popolare il feed</div>
+    </div>
+
+  </main>
+
+  <aside class="side">
+
+    <div>
+      <div class="sec-label">// forecast +7 giorni</div>
+      <div id="forecasts">
+        <div class="forecast-row"><span class="fc-name">Russia</span><div class="fc-right"><span class="fc-arrow" style="color:#2a3a48;">→</span><span class="fc-label" style="color:#2a3a48;">—</span></div></div>
+        <div class="forecast-row"><span class="fc-name">Iran</span><div class="fc-right"><span class="fc-arrow" style="color:#2a3a48;">→</span><span class="fc-label" style="color:#2a3a48;">—</span></div></div>
+        <div class="forecast-row"><span class="fc-name">Iraq</span><div class="fc-right"><span class="fc-arrow" style="color:#2a3a48;">→</span><span class="fc-label" style="color:#2a3a48;">—</span></div></div>
+        <div class="forecast-row"><span class="fc-name">Siria</span><div class="fc-right"><span class="fc-arrow" style="color:#2a3a48;">→</span><span class="fc-label" style="color:#2a3a48;">—</span></div></div>
+        <div class="forecast-row"><span class="fc-name">Turchia</span><div class="fc-right"><span class="fc-arrow" style="color:#2a3a48;">→</span><span class="fc-label" style="color:#2a3a48;">—</span></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-label">// distribuzione framing</div>
+      <div id="framingChart">
+        <div class="empty-state">// nessun dato</div>
+      </div>
+    </div>
+
+    <div class="insight-block">
+      <div class="insight-label">// analyst brief</div>
+      <div class="insight-text" id="insightText">
+        Avviare l'analisi per ricevere la valutazione del contesto implicito rilevato sui flussi monitorati.
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
