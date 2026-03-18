@@ -123,17 +123,6 @@ Nuovi paesi si aggiungono estendendo l'oggetto `queryMap` in `server.js`.
 
 ---
 
-## Possibili evoluzioni
-
-- Aggiungere autenticazione con ruoli (analista / supervisore / direttore)
-- Persistenza delle analisi su database (PostgreSQL / SQLite)
-- Grafo visuale D3.js delle connessioni tra entità
-- Storico e confronto temporale degli score
-- Supporto multilingua per le query NewsAPI (it, fr, de, ar...)
-- Deploy su server con job schedulato per analisi automatiche periodiche
-
----
-
 ## Licenza
 
-Prototipo a scopo dimostrativo. Non destinato a uso operativo senza validazione umana.
+Prototipo a scopo dimostrativo. 
